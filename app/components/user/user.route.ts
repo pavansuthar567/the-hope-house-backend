@@ -69,4 +69,5 @@ router.post('/users', UserValidations.createUser, (req: Request, res: Response) 
 //   UserController.resetPassword(req, res);
 // });
 
-export default router;
+const userRoutes = router;
+export default userRoutes;
