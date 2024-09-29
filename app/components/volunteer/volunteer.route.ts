@@ -1,5 +1,6 @@
 import express, { Request, Response } from 'express';
 import VolunteerController from './volunteer.controller';
+import VolunteerValidations from './volunteer.validations';
 const router = express.Router();
 
 /**
@@ -18,7 +19,7 @@ router.get('/volunteers', (req: Request, res: Response) => {
  * @returns JSON
  * @access public
  */
-router.post('/volunteers', (req: Request, res: Response) => {
+router.post('/volunteers', VolunteerValidations.createVolunteer, (req: Request, res: Response) => {
   VolunteerController.createVolunteer(req, res);
 });
 
@@ -38,7 +39,7 @@ router.get('/volunteers/:id', (req: Request, res: Response) => {
  * @returns JSON
  * @access public
  */
-router.put('/volunteers/:id', (req: Request, res: Response) => {
+router.put('/volunteers/:id', VolunteerValidations.updateVolunteer, (req: Request, res: Response) => {
   VolunteerController.updateVolunteer(req, res);
 });
 

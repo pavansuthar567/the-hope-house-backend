@@ -1,13 +1,30 @@
 import Joi from 'joi';
 import { Request, Response, NextFunction } from 'express';
 
-const UserValidations = {
-  createUser: (req: Request, res: Response, next: NextFunction): void => {
+const VolunteerValidations = {
+  createVolunteer: (req: Request, res: Response, next: NextFunction): void => {
     const schema = Joi.object({
-      username: Joi.string().min(3).max(30).required(),
-      password: Joi.string().min(6).max(50).required(),
+      firstName: Joi.string().min(3).max(30).required(),
+      lastName: Joi.string().min(3).max(30).required(),
       email: Joi.string().email().required(),
-      // Add any other fields as needed
+      phoneNumber: Joi.string().min(10).max(15).required(),
+      address: Joi.object({
+        street: Joi.string().required(),
+        city: Joi.string().required(),
+        state: Joi.string().required(),
+        zipCode: Joi.string().required(),
+      }).required(),
+      dateOfBirth: Joi.date().required(),
+      gender: Joi.string().valid('Male', 'Female', 'Other').required(),
+      skills: Joi.array().items(Joi.string()).required(),
+      availability: Joi.string().valid('Full-time', 'Part-time', 'Weekends').required(),
+      joinedDate: Joi.date().required(),
+      experience: Joi.string().optional(),
+      emergencyContact: Joi.object({
+        name: Joi.string().required(),
+        phoneNumber: Joi.string().min(10).max(15).required(),
+        relation: Joi.string().required(),
+      }).required(),
     });
 
     const { error } = schema.validate(req.body);
@@ -21,9 +38,29 @@ const UserValidations = {
     }
   },
 
-  forgotPassword: (req: Request, res: Response, next: NextFunction): void => {
+  updateVolunteer: (req: Request, res: Response, next: NextFunction): void => {
     const schema = Joi.object({
-      email: Joi.string().email().required(),
+      firstName: Joi.string().min(3).max(30),
+      lastName: Joi.string().min(3).max(30),
+      email: Joi.string().email(),
+      phoneNumber: Joi.string().min(10).max(15),
+      address: Joi.object({
+        street: Joi.string(),
+        city: Joi.string(),
+        state: Joi.string(),
+        zipCode: Joi.string(),
+      }),
+      dateOfBirth: Joi.date(),
+      gender: Joi.string().valid('Male', 'Female', 'Other'),
+      skills: Joi.array().items(Joi.string()),
+      availability: Joi.string().valid('Full-time', 'Part-time', 'Weekends'),
+      joinedDate: Joi.date(),
+      experience: Joi.string(),
+      emergencyContact: Joi.object({
+        name: Joi.string(),
+        phoneNumber: Joi.string().min(10).max(15),
+        relation: Joi.string(),
+      }),
     });
 
     const { error } = schema.validate(req.body);
@@ -35,24 +72,7 @@ const UserValidations = {
     } else {
       next();
     }
-  },
-
-  resetPassword: (req: Request, res: Response, next: NextFunction): void => {
-    const schema = Joi.object({
-      password: Joi.string().min(6).max(50).required(),
-      confirmPassword: Joi.string().valid(Joi.ref('password')).required(),
-    });
-
-    const { error } = schema.validate(req.body);
-    if (error) {
-      res.status(400).json({
-        status: 'error',
-        message: error.details[0].message,
-      });
-    } else {
-      next();
-    }
-  },
+  }
 };
 
-export default UserValidations;
+export default VolunteerValidations;

@@ -31,6 +31,7 @@ export default class VolunteerController {
       return createError(res, error);
     }
   }
+
   static async updateVolunteer(req: Request, res: Response) {
     try {
       const volunteer = await VolunteerService.updateVolunteer(req.params.id, req.body);
@@ -46,7 +47,7 @@ export default class VolunteerController {
   static async deleteVolunteer(req: Request, res: Response) {
     try {
       await VolunteerService.deleteVolunteer(req.params.id);
-      return createResponse(res, 'ok', 'Volunteer deleted successfully.', {}); // Pass an empty object instead of null
+      return createResponse(res, 'ok', 'Volunteer deleted successfully.', {});
     } catch (error) {
       return createError(res, error);
     }
