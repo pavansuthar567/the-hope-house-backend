@@ -1,3 +1,4 @@
+import blogRoutes from 'components/blog/blog.route';
 import eventRoutes from 'components/event/event.route';
 import faqRoutes from 'components/faq/faq.route';
 import testimonialRoutes from 'components/testimonial/testimonial.route';
@@ -14,6 +15,7 @@ const initRoutes = (app: Application): void => {
   app.use('/api/event', eventRoutes);
   app.use('/api/faq', faqRoutes);
   app.use('/api/testimonial', testimonialRoutes);
+  app.use('/api/blog', blogRoutes);
 };
 
 export default initRoutes;
