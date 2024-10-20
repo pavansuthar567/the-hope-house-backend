@@ -14,8 +14,11 @@ export default class FaqService {
       const faq = new FaqModel(data);
       await faq.save();
       return faq;
-    } catch (error) {
-      throw new Error('Error creating FAQ');
+    } catch (error: any) {
+      if (error.code === 11000) {
+        throw new Error('Duplicate key error: ' + JSON.stringify(error.keyValue));
+      }
+      throw new Error('Error creating FAQ: ' + error.message);
     }
   }
 
@@ -34,8 +37,11 @@ export default class FaqService {
         throw new Error('FAQ not found');
       }
       return updatedFaq;
-    } catch (error) {
-      throw new Error('Error updating FAQ');
+    } catch (error: any) {
+      if (error.code === 11000) {
+        throw new Error('Duplicate key error: ' + JSON.stringify(error.keyValue));
+      }
+      throw new Error('Error updating FAQ: ' + error.message);
     }
   }
 

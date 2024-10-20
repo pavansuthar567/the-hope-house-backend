@@ -10,6 +10,10 @@ interface ErrorOptions {
   message?: string; // Add message property here
 }
 
+export interface MulterRequest extends Request {
+  files: Array<any>;
+}
+
 /**
  * Create a response object.
  * @param {Response} res - The response object

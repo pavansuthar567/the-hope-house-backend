@@ -14,8 +14,11 @@ export default class TeamMemberService {
       const teamMember = new TeamMemberModel(data);
       await teamMember.save();
       return teamMember;
-    } catch (error) {
-      throw new Error('Error creating team member');
+    } catch (error: any) {
+      if (error.code === 11000) {
+        throw new Error('Duplicate key error: ' + JSON.stringify(error.keyValue));
+      }
+      throw new Error('Error creating team member: ' + error.message);
     }
   }
 
@@ -34,8 +37,11 @@ export default class TeamMemberService {
         throw new Error('Team member not found');
       }
       return updatedTeamMember;
-    } catch (error) {
-      throw new Error('Error updating team member');
+    } catch (error: any) {
+      if (error.code === 11000) {
+        throw new Error('Duplicate key error: ' + JSON.stringify(error.keyValue));
+      }
+      throw new Error('Error updating team member: ' + error.message);
     }
   }
 
