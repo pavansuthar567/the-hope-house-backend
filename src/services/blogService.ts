@@ -1,4 +1,4 @@
-import BlogModel, { IBlog } from 'models/blog';
+import BlogModel, { IBlog } from "../models/blog";
 
 export default class BlogService {
   static async getBlogs(): Promise<IBlog[]> {

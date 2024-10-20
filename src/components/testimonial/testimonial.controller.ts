@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import TestimonialService from 'services/testimonialService';
-import { createError, createResponse } from 'utils/helpers';
+import TestimonialService from '../../services/testimonialService';
+import { createError, createResponse } from '../../utils/helpers';
 
 export default class TestimonialController {
   static async getTestimonials(req: Request, res: Response) {

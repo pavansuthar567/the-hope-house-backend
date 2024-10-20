@@ -1,4 +1,4 @@
-import TestimonialModel, { ITestimonial } from 'models/testimonial';
+import TestimonialModel, { ITestimonial } from '../models/testimonial';
 
 export default class TestimonialService {
   static async getTestimonials(): Promise<ITestimonial[]> {

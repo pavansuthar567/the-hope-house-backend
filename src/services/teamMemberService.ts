@@ -1,4 +1,4 @@
-import TeamMemberModel, { ITeamMember } from 'models/teamMember';
+import TeamMemberModel, { ITeamMember } from '../models/teamMember';
 
 export default class TeamMemberService {
   static async getTeamMembers(): Promise<ITeamMember[]> {

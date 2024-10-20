@@ -1,4 +1,4 @@
-import VolunteerModel, { IVolunteer } from 'models/volunteer';
+import VolunteerModel, { IVolunteer } from '../models/volunteer';
 
 export default class VolunteerService {
   static async getVolunteers(): Promise<IVolunteer[]> {

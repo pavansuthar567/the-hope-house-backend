@@ -1,4 +1,4 @@
-import UserModel from "models/user";
+import UserModel from "../models/user";
 
 export default class UserService {
   static async getUsers(): Promise<any> {

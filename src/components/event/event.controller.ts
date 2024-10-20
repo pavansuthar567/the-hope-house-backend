@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import EventService from 'services/eventService';
-import { createError, createResponse } from 'utils/helpers';
+import EventService from '../../services/eventService';
+import { createError, createResponse } from '../../utils/helpers';
 
 export default class EventController {
   static async getEvents(req: Request, res: Response) {

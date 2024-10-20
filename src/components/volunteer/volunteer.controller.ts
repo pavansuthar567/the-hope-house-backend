@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import VolunteerService from 'services/volunteerService';
-import { createError, createResponse } from 'utils/helpers';
+import VolunteerService from '../../services/volunteerService';
+import { createError, createResponse } from '../../utils/helpers';
 
 export default class VolunteerController {
   static async getVolunteers(req: Request, res: Response) {

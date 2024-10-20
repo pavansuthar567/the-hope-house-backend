@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import BlogService from 'services/blogService';
-import { createError, createResponse } from 'utils/helpers/helpers';
+import BlogService from '../../services/blogService';
+import { createError, createResponse } from '../../utils/helpers';
 
 export default class BlogController {
   static async getBlogs(req: Request, res: Response) {

@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import TeamMemberService from 'services/teamMemberService';
-import { createError, createResponse } from 'utils/helpers';
+import TeamMemberService from '../../services/teamMemberService';
+import { createError, createResponse } from '../../utils/helpers';
 
 export default class TeamMemberController {
   static async getTeamMembers(req: Request, res: Response) {

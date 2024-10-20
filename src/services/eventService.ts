@@ -1,4 +1,4 @@
-import EventModel, { IEvent } from 'models/event';
+import EventModel, { IEvent } from '../models/event';
 
 export default class EventService {
   static async getEvents(): Promise<IEvent[]> {

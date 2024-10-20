@@ -1,4 +1,4 @@
-import FaqModel, { IFaq } from 'models/faq';
+import FaqModel, { IFaq } from '../models/faq';
 
 export default class FaqService {
   static async getFaqs(): Promise<IFaq[]> {

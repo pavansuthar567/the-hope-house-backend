@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import FaqService from 'services/faqService';
-import { createError, createResponse } from 'utils/helpers';
+import FaqService from '../../services/faqService';
+import { createError, createResponse } from '../../utils/helpers';
 
 export default class FaqController {
   static async getFaqs(req: Request, res: Response) {
