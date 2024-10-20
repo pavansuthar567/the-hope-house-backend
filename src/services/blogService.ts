@@ -14,8 +14,11 @@ export default class BlogService {
       const blog = new BlogModel(data);
       await blog.save();
       return blog;
-    } catch (error) {
-      throw new Error('Error creating blog');
+    } catch (error: any) {
+      if (error.code === 11000) {
+        throw new Error('Duplicate key error: ' + JSON.stringify(error.keyValue));
+      }
+      throw new Error('Error creasting blog: ' + error.message);
     }
   }
 
@@ -34,8 +37,11 @@ export default class BlogService {
         throw new Error('Blog not found');
       }
       return updatedBlog;
-    } catch (error) {
-      throw new Error('Error updating blog');
+    } catch (error: any) {
+      if (error.code === 11000) {
+        throw new Error('Duplicate key error: ' + JSON.stringify(error.keyValue));
+      }
+      throw new Error('Error updating blog: ' + error.message);
     }
   }
 

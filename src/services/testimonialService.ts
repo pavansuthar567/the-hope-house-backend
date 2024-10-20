@@ -14,8 +14,11 @@ export default class TestimonialService {
       const testimonial = new TestimonialModel(data);
       await testimonial.save();
       return testimonial;
-    } catch (error) {
-      throw new Error('Error creating testimonial');
+    } catch (error: any) {
+      if (error.code === 11000) {
+        throw new Error('Duplicate key error: ' + JSON.stringify(error.keyValue));
+      }
+      throw new Error('Error creating testimonial: ' + error.message);
     }
   }
 
@@ -34,8 +37,11 @@ export default class TestimonialService {
         throw new Error('Testimonial not found');
       }
       return updatedTestimonial;
-    } catch (error) {
-      throw new Error('Error updating testimonial');
+    } catch (error: any) {
+      if (error.code === 11000) {
+        throw new Error('Duplicate key error: ' + JSON.stringify(error.keyValue));
+      }
+      throw new Error('Error updating testimonial: ' + error.message);
     }
   }
 

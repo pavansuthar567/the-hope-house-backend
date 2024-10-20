@@ -17,8 +17,11 @@ export default class UserService {
       const newUser = new UserModel(userData);
       await newUser.save();
       return newUser;
-    } catch (error) {
-      throw new Error('Error creating user');
+    } catch (error: any) {
+      if (error.code === 11000) {
+        throw new Error('Duplicate key error: ' + JSON.stringify(error.keyValue));
+      }
+      throw new Error('Error creating user: ' + error.message);
     }
   }
 
@@ -43,8 +46,11 @@ export default class UserService {
         throw new Error('User not found');
       }
       return updatedUser;
-    } catch (error) {
-      throw new Error('Error updating user');
+    } catch (error: any) {
+      if (error.code === 11000) {
+        throw new Error('Duplicate key error: ' + JSON.stringify(error.keyValue));
+      }
+      throw new Error('Error updating user: ' + error.message);
     }
   }
 }
