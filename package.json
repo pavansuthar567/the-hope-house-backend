@@ -2,21 +2,26 @@
   "name": "the-hope-house-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node --loader ts-node/esm app/server.ts",
+    "start": "node --loader ts-node/esm app/server.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "type": "module",
   "dependencies": {
+    "dotenv": "^16.4.5",
     "express": "^4.21.0",
     "joi": "^17.13.3",
     "mongoose": "^8.7.0"
   },
   "devDependencies": {
+    "@tsconfig/node-lts-strictest-esm": "^18.12.1",
     "@types/express": "^5.0.0",
     "@types/node": "^22.7.4",
-    "typescript": "^5.6.2"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3"
   }
 }
