@@ -10,7 +10,7 @@ const router = express.Router();
  * @returns JSON
  * @access public
  */
-router.get('/testimonials', (req: Request, res: Response) => {
+router.get('/', (req: Request, res: Response) => {
   TestimonialController.getTestimonials(req, res);
 });
 
@@ -20,7 +20,7 @@ router.get('/testimonials', (req: Request, res: Response) => {
  * @returns JSON
  * @access public
  */
-router.post('/testimonials', TestimonialValidations.createTestimonial, (req: Request, res: Response) => {
+router.post('/', TestimonialValidations.createTestimonial, (req: Request, res: Response) => {
   TestimonialController.createTestimonial(req, res);
 });
 
@@ -30,7 +30,7 @@ router.post('/testimonials', TestimonialValidations.createTestimonial, (req: Req
  * @returns JSON
  * @access public
  */
-router.get('/testimonials/:id', (req: Request, res: Response) => {
+router.get('/:id', (req: Request, res: Response) => {
   TestimonialController.getTestimonialById(req, res);
 });
 
@@ -40,7 +40,7 @@ router.get('/testimonials/:id', (req: Request, res: Response) => {
  * @returns JSON
  * @access public
  */
-router.put('/testimonials/:id', TestimonialValidations.updateTestimonial, (req: Request, res: Response) => {
+router.put('/:id', TestimonialValidations.updateTestimonial, (req: Request, res: Response) => {
   TestimonialController.updateTestimonial(req, res);
 });
 
@@ -50,7 +50,7 @@ router.put('/testimonials/:id', TestimonialValidations.updateTestimonial, (req: 
  * @returns JSON
  * @access public
  */
-router.delete('/testimonials/:id', (req: Request, res: Response) => {
+router.delete('/:id', (req: Request, res: Response) => {
   TestimonialController.deleteTestimonial(req, res);
 });
 

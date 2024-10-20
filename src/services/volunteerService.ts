@@ -14,8 +14,11 @@ export default class VolunteerService {
       const volunteer = new VolunteerModel(data);
       await volunteer.save();
       return volunteer;
-    } catch (error) {
-      throw new Error('Error creating volunteer');
+    } catch (error: any) {
+      if (error.code === 11000) {
+        throw new Error('Duplicate key error: ' + JSON.stringify(error.keyValue));
+      }
+      throw new Error('Error creating volunteer: ' + error.message);
     }
   }
 
@@ -34,8 +37,11 @@ export default class VolunteerService {
         throw new Error('Volunteer not found');
       }
       return updatedVolunteer;
-    } catch (error) {
-      throw new Error('Error updating volunteer');
+    } catch (error: any) {
+      if (error.code === 11000) {
+        throw new Error('Duplicate key error: ' + JSON.stringify(error.keyValue));
+      }
+      throw new Error('Error updating volunteer: ' + error.message);
     }
   }
 

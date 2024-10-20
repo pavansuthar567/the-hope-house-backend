@@ -10,7 +10,7 @@ const router = express.Router();
  * @returns JSON
  * @access public
  */
-router.get('/team-members', (req: Request, res: Response) => {
+router.get('/', (req: Request, res: Response) => {
   TeamMemberController.getTeamMembers(req, res);
 });
 
@@ -20,7 +20,7 @@ router.get('/team-members', (req: Request, res: Response) => {
  * @returns JSON
  * @access public
  */
-router.post('/team-members', TeamMemberValidations.createTeamMember, (req: Request, res: Response) => {
+router.post('/', TeamMemberValidations.createTeamMember, (req: Request, res: Response) => {
   TeamMemberController.createTeamMember(req, res);
 });
 
@@ -30,7 +30,7 @@ router.post('/team-members', TeamMemberValidations.createTeamMember, (req: Reque
  * @returns JSON
  * @access public
  */
-router.get('/team-members/:id', (req: Request, res: Response) => {
+router.get('/:id', (req: Request, res: Response) => {
   TeamMemberController.getTeamMemberById(req, res);
 });
 
@@ -40,7 +40,7 @@ router.get('/team-members/:id', (req: Request, res: Response) => {
  * @returns JSON
  * @access public
  */
-router.put('/team-members/:id', TeamMemberValidations.updateTeamMember, (req: Request, res: Response) => {
+router.put('/:id', TeamMemberValidations.updateTeamMember, (req: Request, res: Response) => {
   TeamMemberController.updateTeamMember(req, res);
 });
 
@@ -50,7 +50,7 @@ router.put('/team-members/:id', TeamMemberValidations.updateTeamMember, (req: Re
  * @returns JSON
  * @access public
  */
-router.delete('/team-members/:id', (req: Request, res: Response) => {
+router.delete('/:id', (req: Request, res: Response) => {
   TeamMemberController.deleteTeamMember(req, res);
 });
 

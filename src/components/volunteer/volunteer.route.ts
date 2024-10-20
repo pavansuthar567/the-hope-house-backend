@@ -9,7 +9,7 @@ const router = express.Router();
  * @returns JSON
  * @access public
  */
-router.get('/volunteers', (req: Request, res: Response) => {
+router.get('/', (req: Request, res: Response) => {
   VolunteerController.getVolunteers(req, res);
 });
 
@@ -19,7 +19,7 @@ router.get('/volunteers', (req: Request, res: Response) => {
  * @returns JSON
  * @access public
  */
-router.post('/volunteers', VolunteerValidations.createVolunteer, (req: Request, res: Response) => {
+router.post('/', VolunteerValidations.createVolunteer, (req: Request, res: Response) => {
   VolunteerController.createVolunteer(req, res);
 });
 
@@ -29,7 +29,7 @@ router.post('/volunteers', VolunteerValidations.createVolunteer, (req: Request, 
  * @returns JSON
  * @access public
  */
-router.get('/volunteers/:id', (req: Request, res: Response) => {
+router.get('/:id', (req: Request, res: Response) => {
   VolunteerController.getVolunteerById(req, res);
 });
 
@@ -39,7 +39,7 @@ router.get('/volunteers/:id', (req: Request, res: Response) => {
  * @returns JSON
  * @access public
  */
-router.put('/volunteers/:id', VolunteerValidations.updateVolunteer, (req: Request, res: Response) => {
+router.put('/:id', VolunteerValidations.updateVolunteer, (req: Request, res: Response) => {
   VolunteerController.updateVolunteer(req, res);
 });
 
@@ -49,7 +49,7 @@ router.put('/volunteers/:id', VolunteerValidations.updateVolunteer, (req: Reques
  * @returns JSON
  * @access public
  */
-router.delete('/volunteers/:id', (req: Request, res: Response) => {
+router.delete('/:id', (req: Request, res: Response) => {
   VolunteerController.deleteVolunteer(req, res);
 });
 

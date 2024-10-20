@@ -13,7 +13,7 @@ const router = express.Router();
  * @returns JSON
  * @access public
  */
-router.get('/users', (req: Request, res: Response) => {
+router.get('/', (req: Request, res: Response) => {
   UserController.getUsers(req, res);
 });
 
@@ -23,7 +23,7 @@ router.get('/users', (req: Request, res: Response) => {
  * @returns JSON
  * @access public
  */
-router.post('/users', UserValidations.createUser, (req: Request, res: Response) => {
+router.post('/', UserValidations.createUser, (req: Request, res: Response) => {
   UserController.createUser(req, res);
 });
 

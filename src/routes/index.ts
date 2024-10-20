@@ -13,7 +13,7 @@ import { Application } from 'express';
 const initRoutes = (app: Application): void => {
   app.use('/api/user', userRoutes);
   app.use('/api/volunteer', volunteerRoutes);
-  app.use('/api/teamMember', teamMemberRoutes);
+  app.use('/api/team-members', teamMemberRoutes);
   app.use('/api/event', eventRoutes);
   app.use('/api/faq', faqRoutes);
   app.use('/api/testimonial', testimonialRoutes);

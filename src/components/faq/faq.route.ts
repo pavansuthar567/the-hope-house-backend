@@ -9,7 +9,7 @@ const router = express.Router();
  * @returns JSON
  * @access public
  */
-router.get('/faqs', (req: Request, res: Response) => {
+router.get('/', (req: Request, res: Response) => {
   FaqController.getFaqs(req, res);
 });
 
@@ -19,7 +19,7 @@ router.get('/faqs', (req: Request, res: Response) => {
  * @returns JSON
  * @access public
  */
-router.post('/faqs', FaqValidations.createFaq, (req: Request, res: Response) => {
+router.post('/', FaqValidations.createFaq, (req: Request, res: Response) => {
   FaqController.createFaq(req, res);
 });
 
@@ -29,7 +29,7 @@ router.post('/faqs', FaqValidations.createFaq, (req: Request, res: Response) => 
  * @returns JSON
  * @access public
  */
-router.get('/faqs/:id', (req: Request, res: Response) => {
+router.get('/:id', (req: Request, res: Response) => {
   FaqController.getFaqById(req, res);
 });
 
@@ -39,7 +39,7 @@ router.get('/faqs/:id', (req: Request, res: Response) => {
  * @returns JSON
  * @access public
  */
-router.put('/faqs/:id', FaqValidations.updateFaq, (req: Request, res: Response) => {
+router.put('/:id', FaqValidations.updateFaq, (req: Request, res: Response) => {
   FaqController.updateFaq(req, res);
 });
 
@@ -49,7 +49,7 @@ router.put('/faqs/:id', FaqValidations.updateFaq, (req: Request, res: Response) 
  * @returns JSON
  * @access public
  */
-router.delete('/faqs/:id', (req: Request, res: Response) => {
+router.delete('/:id', (req: Request, res: Response) => {
   FaqController.deleteFaq(req, res);
 });
 

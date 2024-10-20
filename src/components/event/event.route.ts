@@ -9,7 +9,7 @@ const router = express.Router();
  * @returns JSON
  * @access public
  */
-router.get('/events', (req: Request, res: Response) => {
+router.get('/', (req: Request, res: Response) => {
   EventController.getEvents(req, res);
 });
 
@@ -19,7 +19,7 @@ router.get('/events', (req: Request, res: Response) => {
  * @returns JSON
  * @access public
  */
-router.post('/events', EventValidations.createEvent, (req: Request, res: Response) => {
+router.post('/', EventValidations.createEvent, (req: Request, res: Response) => {
   EventController.createEvent(req, res);
 });
 
@@ -29,7 +29,7 @@ router.post('/events', EventValidations.createEvent, (req: Request, res: Respons
  * @returns JSON
  * @access public
  */
-router.get('/events/:id', (req: Request, res: Response) => {
+router.get('/:id', (req: Request, res: Response) => {
   EventController.getEventById(req, res);
 });
 
@@ -39,7 +39,7 @@ router.get('/events/:id', (req: Request, res: Response) => {
  * @returns JSON
  * @access public
  */
-router.put('/events/:id', EventValidations.updateEvent, (req: Request, res: Response) => {
+router.put('/:id', EventValidations.updateEvent, (req: Request, res: Response) => {
   EventController.updateEvent(req, res);
 });
 
@@ -49,7 +49,7 @@ router.put('/events/:id', EventValidations.updateEvent, (req: Request, res: Resp
  * @returns JSON
  * @access public
  */
-router.delete('/events/:id', (req: Request, res: Response) => {
+router.delete('/:id', (req: Request, res: Response) => {
   EventController.deleteEvent(req, res);
 });
 

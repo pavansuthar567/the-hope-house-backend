@@ -10,7 +10,7 @@ const router = express.Router();
  * @returns JSON
  * @access public
  */
-router.get('/blogs', (req: Request, res: Response) => {
+router.get('/', (req: Request, res: Response) => {
   BlogController.getBlogs(req, res);
 });
 
@@ -20,7 +20,7 @@ router.get('/blogs', (req: Request, res: Response) => {
  * @returns JSON
  * @access public
  */
-router.post('/blogs', BlogValidations.createBlog, (req: Request, res: Response) => {
+router.post('/', BlogValidations.createBlog, (req: Request, res: Response) => {
   BlogController.createBlog(req, res);
 });
 
@@ -30,7 +30,7 @@ router.post('/blogs', BlogValidations.createBlog, (req: Request, res: Response) 
  * @returns JSON
  * @access public
  */
-router.get('/blogs/:id', (req: Request, res: Response) => {
+router.get('/:id', (req: Request, res: Response) => {
   BlogController.getBlogById(req, res);
 });
 
@@ -40,7 +40,7 @@ router.get('/blogs/:id', (req: Request, res: Response) => {
  * @returns JSON
  * @access public
  */
-router.put('/blogs/:id', BlogValidations.updateBlog, (req: Request, res: Response) => {
+router.put('/:id', BlogValidations.updateBlog, (req: Request, res: Response) => {
   BlogController.updateBlog(req, res);
 });
 
@@ -50,7 +50,7 @@ router.put('/blogs/:id', BlogValidations.updateBlog, (req: Request, res: Respons
  * @returns JSON
  * @access public
  */
-router.delete('/blogs/:id', (req: Request, res: Response) => {
+router.delete('/:id', (req: Request, res: Response) => {
   BlogController.deleteBlog(req, res);
 });
 
