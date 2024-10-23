@@ -14,8 +14,11 @@ export default class EventService {
       const event = new EventModel(data);
       await event.save();
       return event;
-    } catch (error) {
-      throw new Error('Error creating event');
+    } catch (error: any) {
+      if (error.code === 11000) {
+        throw new Error('Duplicate key error: ' + JSON.stringify(error.keyValue));
+      }
+      throw new Error('Error creating event: ' + error.message);
     }
   }
 
@@ -34,8 +37,11 @@ export default class EventService {
         throw new Error('Event not found');
       }
       return updatedEvent;
-    } catch (error) {
-      throw new Error('Error updating event');
+    } catch (error: any) {
+      if (error.code === 11000) {
+        throw new Error('Duplicate key error: ' + JSON.stringify(error.keyValue));
+      }
+      throw new Error('Error updating event: ' + error.message);
     }
   }
 

@@ -8,6 +8,7 @@ import quoteRoutes from '../components/quote/quote.route';
 import recognitionRoutes from '../components/recognition/recognition.route';
 import teamMemberRoutes from '../components/teamMember/teamMember.route';
 import testimonialRoutes from '../components/testimonial/testimonial.route';
+import fileUploadRoutes from '../components/uploadFile/upload.route';
 import userRoutes from '../components/user/user.route';
 import volunteerRoutes from '../components/volunteer/volunteer.route';
 import { Application } from 'express';
@@ -23,6 +24,7 @@ const initRoutes = (app: Application): void => {
   app.use('/api/faq', faqRoutes);
   app.use('/api/testimonial', testimonialRoutes);
   app.use('/api/blog', blogRoutes);
+  app.use('/api/upload', fileUploadRoutes);
   app.use('/api/quote', quoteRoutes);
   app.use('/api/gallery', galleryRoutes);
   app.use('/api/ancillary-page', ancillaryPageRoutes);
