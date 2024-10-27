@@ -10,7 +10,6 @@ app.use(express.json());
 app.use(
   cors({
     origin: '*', // Allow requests from any origin
-    credentials: true, // If you need to include credentials
   }),
 );
 
