@@ -29,3 +29,4 @@ coverage/
 # Optional: yarn.lock or package-lock.json if you don't want to track them
 # yarn.lock
 # package-lock.json
+.vercel
