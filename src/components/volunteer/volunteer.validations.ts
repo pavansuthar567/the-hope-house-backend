@@ -49,6 +49,7 @@ const VolunteerValidations = {
         city: Joi.string(),
         state: Joi.string(),
         zipCode: Joi.string(),
+        _id: Joi.string().optional(),
       }),
       dateOfBirth: Joi.date(),
       gender: Joi.string().valid('Male', 'Female', 'Other'),
