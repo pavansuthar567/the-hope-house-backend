@@ -41,20 +41,23 @@ const emergencyContactSchema = new Schema<IEmergencyContact>({
   relation: { type: String, required: true },
 });
 
-const volunteerSchema = new Schema<IVolunteer>({
-  firstName: { type: String, required: true },
-  lastName: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
-  phoneNumber: { type: String, required: true },
-  address: { type: addressSchema, required: true },
-  dateOfBirth: { type: Date, required: true },
-  gender: { type: String, enum: ['Male', 'Female', 'Other'], required: true },
-  skills: { type: [String], required: true },
-  availability: { type: String, enum: ['Full-time', 'Part-time', 'Weekends'], required: true },
-  joinedDate: { type: Date, default: Date.now },
-  experience: { type: String },
-  emergencyContact: { type: emergencyContactSchema, required: true },
-});
+const volunteerSchema = new Schema<IVolunteer>(
+  {
+    firstName: { type: String, required: true },
+    lastName: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
+    phoneNumber: { type: String, required: true },
+    address: { type: addressSchema, required: true },
+    dateOfBirth: { type: Date, required: true },
+    gender: { type: String, enum: ['Male', 'Female', 'Other'], required: true },
+    skills: { type: [String], required: true },
+    availability: { type: String, enum: ['Full-time', 'Part-time', 'Weekends'], required: true },
+    joinedDate: { type: Date, default: Date.now },
+    experience: { type: String },
+    emergencyContact: { type: emergencyContactSchema, required: true },
+  },
+  { versionKey: false },
+);
 
 // Export the model
 const VolunteerModel: Model<IVolunteer> = mongoose.model<IVolunteer>('volunteers', volunteerSchema);
