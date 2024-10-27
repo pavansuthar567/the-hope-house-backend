@@ -40,6 +40,7 @@ const VolunteerValidations = {
 
   updateVolunteer: (req: Request, res: Response, next: NextFunction): void => {
     const schema = Joi.object({
+      _id: Joi.string().optional(),
       firstName: Joi.string().min(3).max(30),
       lastName: Joi.string().min(3).max(30),
       email: Joi.string().email(),
@@ -50,7 +51,7 @@ const VolunteerValidations = {
         state: Joi.string(),
         zipCode: Joi.string(),
         _id: Joi.string().optional(),
-      }).optional(),
+      }),
       dateOfBirth: Joi.date(),
       gender: Joi.string().valid('Male', 'Female', 'Other'),
       skills: Joi.array().items(Joi.string()),
@@ -61,6 +62,7 @@ const VolunteerValidations = {
         name: Joi.string(),
         phoneNumber: Joi.string().min(10).max(15),
         relation: Joi.string(),
+        _id: Joi.string().optional(),
       }),
     });
 
