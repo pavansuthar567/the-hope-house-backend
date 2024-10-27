@@ -72,3 +72,22 @@
 - **Created By**: Who created the page (optional).
 - **Status**: Whether the page is active, inactive, or a draft (optional).
 - **Version**: The version number of the document (optional). 
+
+the hope house admin
+# verify-form
+ref={(ref) => {
+inputRefs.current[index] = ref;
+}}   
+# nav-menu
+<!-- <Link -->
+href="#"
+# horizontal-menu
+<!-- <Link -->
+href={'#'}
+# comment all <AddBlock />
+# breadcrumbs.tsx
+aria-current={ariaCurrent || undefined} // Handle null properly
+# sharp installation
+# .gitignore
+    # Local Netlify folder
+    .netlify
