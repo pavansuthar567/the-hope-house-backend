@@ -50,7 +50,7 @@ const VolunteerValidations = {
         state: Joi.string(),
         zipCode: Joi.string(),
         _id: Joi.string().optional(),
-      }),
+      }).optional(),
       dateOfBirth: Joi.date(),
       gender: Joi.string().valid('Male', 'Female', 'Other'),
       skills: Joi.array().items(Joi.string()),
@@ -73,7 +73,7 @@ const VolunteerValidations = {
     } else {
       next();
     }
-  }
+  },
 };
 
 export default VolunteerValidations;
