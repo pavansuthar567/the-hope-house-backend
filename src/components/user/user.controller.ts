@@ -12,6 +12,16 @@ export default class UserController {
     }
   }
 
+  static async getUserById(req: Request, res: Response): Promise<void> {
+    try {
+      const user = await UserService.getUserById(req.params.id);
+
+      createResponse(res, 'ok', 'User retrieved successfully', user);
+    } catch (error) {
+      createError(res, error, { message: 'Failed to retrieve user' });
+    }
+  }
+
   static async createUser(req: Request, res: Response): Promise<void> {
     try {
       const user = await UserService.createUser(req.body);

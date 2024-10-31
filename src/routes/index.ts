@@ -17,14 +17,14 @@ import { Application } from 'express';
  * Init All routes here
  */
 const initRoutes = (app: Application): void => {
-  app.use('/api/user', userRoutes);
-  app.use('/api/volunteer', volunteerRoutes);
-  app.use('/api/team-members', teamMemberRoutes);
-  app.use('/api/event', eventRoutes);
+  app.use('/api/user', userRoutes); //
+  app.use('/api/volunteer', volunteerRoutes); //
+  app.use('/api/team-members', teamMemberRoutes); //
+  app.use('/api/event', eventRoutes); //
   app.use('/api/faq', faqRoutes);
-  app.use('/api/testimonial', testimonialRoutes);
+  app.use('/api/testimonial', testimonialRoutes); //
   app.use('/api/blog', blogRoutes);
-  app.use('/api/upload', fileUploadRoutes);
+  app.use('/api/upload', fileUploadRoutes); //
   app.use('/api/quote', quoteRoutes);
   app.use('/api/gallery', galleryRoutes);
   app.use('/api/ancillary-page', ancillaryPageRoutes);

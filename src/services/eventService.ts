@@ -22,10 +22,23 @@ export default class EventService {
     }
   }
 
-  static async getEventById(id: string): Promise<IEvent | null> {
+  // static async getEventById(id: string): Promise<IEvent | null> {
+  //   try {
+  //     return await EventModel.findById(id).populate('organizer');
+  //   } catch (error) {
+  //     throw new Error('Error fetching event');
+  //   }
+  // }
+
+  static async getEventById(eventId: string): Promise<any> {
     try {
-      return await EventModel.findById(id).populate('organizer');
-    } catch (error) {
+      const event = await EventModel.findById(eventId);
+      if (!event) {
+        throw new Error(`Event with ID ${eventId} not found`);
+      }
+      return event;
+    } catch (error: any) {
+      console.error(`Error fetching event with ID ${eventId}:`, error.message);
       throw new Error('Error fetching event');
     }
   }

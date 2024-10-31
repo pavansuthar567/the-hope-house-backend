@@ -2,14 +2,16 @@ import mongoose, { Document, Schema, Model } from 'mongoose';
 
 // Define the interface for a User document
 export interface IUser extends Document {
-  username: string;
+  name: string;
   email: string;
+  password: string;
 }
 
 // Create the schema for User
 const userSchema: Schema<IUser> = new Schema({
-  username: { type: String, required: true },
-  email: { type: String, required: true },
+  name: { type: String, required: true, unique: true },
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
 });
 
 // Export the model
