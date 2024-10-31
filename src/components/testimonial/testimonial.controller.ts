@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import TestimonialService from '../../services/testimonialService';
 import { createError, createResponse } from '../../utils/helpers';
+import mongoose from 'mongoose';
 
 export default class TestimonialController {
   static async getTestimonials(req: Request, res: Response) {
@@ -14,7 +15,9 @@ export default class TestimonialController {
 
   static async createTestimonial(req: Request, res: Response) {
     try {
-      const testimonial = await TestimonialService.createTestimonial(req.body);
+      const user = new mongoose.Types.ObjectId('671fcea4f775dbc01fa7c25f');
+      const payload = { ...req.body, createdBy: user, updatedBy: user };
+      const testimonial = await TestimonialService.createTestimonial(payload);
       return createResponse(res, 'ok', 'Testimonial created successfully.', testimonial, {}, 201);
     } catch (error) {
       return createError(res, error);
