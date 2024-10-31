@@ -4,10 +4,41 @@ import { Request, Response, NextFunction } from 'express';
 const UserValidations = {
   createUser: (req: Request, res: Response, next: NextFunction): void => {
     const schema = Joi.object({
-      username: Joi.string().min(3).max(30).required(),
-      password: Joi.string().min(6).max(50).required(),
+      name: Joi.string().min(3).max(30).required(),
+      password: Joi.string()
+        .min(8)
+        .max(50)
+        .pattern(new RegExp('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%*?&])'))
+        .message(
+          'Password must be at least 8 characters long and include an uppercase letter, lowercase letter, number, and special character',
+        )
+        .required(),
       email: Joi.string().email().required(),
-      // Add any other fields as needed
+    });
+
+    const { error } = schema.validate(req.body);
+    if (error) {
+      res.status(400).json({
+        status: 'error',
+        message: error.details[0].message,
+      });
+    } else {
+      next();
+    }
+  },
+
+  updateUser: (req: Request, res: Response, next: NextFunction): void => {
+    const schema = Joi.object({
+      name: Joi.string().min(3).max(30).optional(), // Name is optional for updates
+      password: Joi.string()
+        .min(8)
+        .max(50)
+        .pattern(new RegExp('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%*?&])'))
+        .message(
+          'Password must be at least 8 characters long and include an uppercase letter, lowercase letter, number, and special character',
+        )
+        .optional(), // Password is optional for updates, but can be provided
+      email: Joi.string().email().optional(), // Email is optional for updates
     });
 
     const { error } = schema.validate(req.body);
@@ -39,8 +70,39 @@ const UserValidations = {
 
   resetPassword: (req: Request, res: Response, next: NextFunction): void => {
     const schema = Joi.object({
-      password: Joi.string().min(6).max(50).required(),
+      password: Joi.string()
+        .min(8)
+        .max(50)
+        .pattern(new RegExp('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%*?&])'))
+        .message(
+          'Password must be at least 8 characters long and include an uppercase letter, lowercase letter, number, and special character',
+        )
+        .required(),
       confirmPassword: Joi.string().valid(Joi.ref('password')).required(),
+    });
+
+    const { error } = schema.validate(req.body);
+    if (error) {
+      res.status(400).json({
+        status: 'error',
+        message: error.details[0].message,
+      });
+    } else {
+      next();
+    }
+  },
+
+  loginUser: (req: Request, res: Response, next: NextFunction): void => {
+    const schema = Joi.object({
+      email: Joi.string().email().required(),
+      password: Joi.string()
+        .min(8)
+        .max(50)
+        .pattern(new RegExp('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%*?&])'))
+        .message(
+          'Password must be at least 8 characters long and include an uppercase letter, lowercase letter, number, and special character',
+        )
+        .required(),
     });
 
     const { error } = schema.validate(req.body);

@@ -14,7 +14,7 @@ const EventValidations = {
         state: Joi.string().required(),
       }).required(),
       startDate: Joi.date().required(),
-      endDate: Joi.date().required().greater(Joi.ref('startDate')),
+      endDate: Joi.date().required().min(Joi.ref('startDate')),
       capacity: Joi.number().min(1).required(),
       participantsRegistered: Joi.number().default(0),
       eventType: Joi.string().valid('In-Person', 'Virtual').required(),

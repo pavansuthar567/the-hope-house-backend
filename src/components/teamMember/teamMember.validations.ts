@@ -7,12 +7,16 @@ const TeamMemberValidations = {
       firstName: Joi.string().min(2).required(),
       lastName: Joi.string().min(2).required(),
       email: Joi.string().email().required(),
-      phoneNumber: Joi.string().pattern(/^[0-9]{10}$/).required(),
+      phoneNumber: Joi.string()
+        .pattern(/^[0-9]{10}$/)
+        .required(),
       address: Joi.object({
         street: Joi.string().required(),
         city: Joi.string().required(),
         state: Joi.string().required(),
-        zipCode: Joi.string().pattern(/^[0-9]{5}$/).required(),
+        zipCode: Joi.string()
+          .pattern(/^[0-9]{6}$/)
+          .required(),
       }).required(),
       role: Joi.string().required(),
       bio: Joi.string().required(),
@@ -43,12 +47,16 @@ const TeamMemberValidations = {
       firstName: Joi.string().min(2).optional(),
       lastName: Joi.string().min(2).optional(),
       email: Joi.string().email().optional(),
-      phoneNumber: Joi.string().pattern(/^[0-9]{10}$/).optional(),
+      phoneNumber: Joi.string()
+        .pattern(/^[0-9]{10}$/)
+        .optional(),
       address: Joi.object({
         street: Joi.string().optional(),
         city: Joi.string().optional(),
         state: Joi.string().optional(),
-        zipCode: Joi.string().pattern(/^[0-9]{5}$/).optional(),
+        zipCode: Joi.string()
+          .pattern(/^[0-9]{6}$/)
+          .optional(),
       }).optional(),
       role: Joi.string().optional(),
       bio: Joi.string().optional(),

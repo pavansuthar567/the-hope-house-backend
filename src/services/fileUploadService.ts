@@ -66,6 +66,30 @@ export default class FileUploadService {
       throw new Error('Error uploading image to Cloudinary');
     }
   }
+
+  static async delete(req: Request): Promise<any> {
+    try {
+      const { urls, resource_type } = req.body as any; // Expect an array of public IDs to delete
+      if (!Array.isArray(urls) || urls.length === 0) {
+        throw new Error('No URLs provided');
+      }
+
+      const deletePromises = urls.map((url: string) => {
+        // Extract the public ID from the URL
+        const publicId = url
+          .split('/')
+          .slice(7)
+          .join('/')
+          .replace(/\.[^/.]+$/, ''); // Adjust as needed
+        return cloudinary.uploader.destroy(publicId, { resource_type }); // Set resource_type to 'image'
+      });
+
+      return await Promise.all(deletePromises);
+    } catch (error) {
+      console.error(error);
+      throw new Error('Error deleting image from Cloudinary');
+    }
+  }
 }
 
 // Upload an image
