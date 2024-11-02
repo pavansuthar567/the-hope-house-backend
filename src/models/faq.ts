@@ -10,7 +10,7 @@ export interface IFaq extends Document {
 const faqSchema = new Schema<IFaq>({
   question: { type: String, required: true },
   answer: { type: String, required: true },
-  category: { type: String }, // Optional: Categorize FAQs
+  category: { type: String, enum: ['General', 'Volunteering', 'Donations'], default: 'General' }, // Optional: Categorize FAQs
   createdAt: { type: Date, default: Date.now },
 });
 
