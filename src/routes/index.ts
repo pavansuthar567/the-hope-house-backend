@@ -18,18 +18,18 @@ import { Application } from 'express';
  */
 const initRoutes = (app: Application): void => {
   app.use('/api/user', userRoutes); //
+  app.use('/api/event', eventRoutes); //
+  app.use('/api/upload', fileUploadRoutes); //
   app.use('/api/volunteer', volunteerRoutes); //
   app.use('/api/team-members', teamMemberRoutes); //
-  app.use('/api/event', eventRoutes); //
-  app.use('/api/faq', faqRoutes);
   app.use('/api/testimonial', testimonialRoutes); //
+  app.use('/api/faq', faqRoutes); //
   app.use('/api/blog', blogRoutes);
-  app.use('/api/upload', fileUploadRoutes); //
-  app.use('/api/quote', quoteRoutes);
-  app.use('/api/gallery', galleryRoutes);
-  app.use('/api/ancillary-page', ancillaryPageRoutes);
+  app.use('/api/quote', quoteRoutes); //
   app.use('/api/home-page', homeRoutes);
+  app.use('/api/gallery', galleryRoutes);
   app.use('/api/recognition', recognitionRoutes);
+  app.use('/api/ancillary-page', ancillaryPageRoutes);
 };
 
 export default initRoutes;
