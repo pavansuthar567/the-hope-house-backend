@@ -336,7 +336,17 @@
             "description": "ID of the user who updated the testimonial"
           }
         },
-        "required": ["name", "message", "createdBy", "updatedBy"]
+        "required": ["name", "message", "createdBy", "updatedBy"],
+        "example": {
+          "name": "John Doe",
+          "designation": "CEO",
+          "message": "This service was fantastic!",
+          "image": "https://example.com/image.jpg",
+          "createdAt": "2024-11-01T00:00:00Z",
+          "updatedAt": "2024-11-01T00:00:00Z",
+          "createdBy": "user123",
+          "updatedBy": "user123"
+        }
       },
       "Faq": {
         "type": "object",
@@ -359,7 +369,13 @@
             "format": "date-time"
           }
         },
-        "required": ["question", "answer"]
+        "required": ["question", "answer"],
+        "example": {
+          "question": "What is the process for volunteering?",
+          "answer": "To volunteer, please sign up on our website.",
+          "category": "Volunteering",
+          "createdAt": "2024-11-01T00:00:00Z"
+        }
       }
     },
     "tags": [
