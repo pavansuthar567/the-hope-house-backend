@@ -15,7 +15,7 @@ export default class TestimonialController {
 
   static async createTestimonial(req: Request, res: Response) {
     try {
-      const user = new mongoose.Types.ObjectId('671fcea4f775dbc01fa7c25f');
+      const user = new mongoose.Types.ObjectId('672335cb8b57a8954d79d1c2');
       const payload = { ...req.body, createdBy: user, updatedBy: user };
       const testimonial = await TestimonialService.createTestimonial(payload);
       return createResponse(res, 'ok', 'Testimonial created successfully.', testimonial, {}, 201);

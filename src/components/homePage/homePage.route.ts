@@ -6,22 +6,32 @@ const router = express.Router();
 
 /**
  * @route GET /api/home
- * @description Get home page data
+ * @description Get all home page data
  * @returns JSON
  * @access public
  */
 router.get('/', (req: Request, res: Response) => {
-  HomePageController.getHomePage(req, res);
+  HomePageController.getHomePages(req, res);
 });
 
 /**
  * @route POST /api/home
- * @description Create home page data
+ * @description Create a new home page entry
  * @returns JSON
  * @access public
  */
 router.post('/', HomePageValidations.createHomePage, (req: Request, res: Response) => {
   HomePageController.createHomePage(req, res);
+});
+
+/**
+ * @route GET /api/home/:id
+ * @description Get home page data by ID
+ * @returns JSON
+ * @access public
+ */
+router.get('/:id', (req: Request, res: Response) => {
+  HomePageController.getHomePageById(req, res);
 });
 
 /**
@@ -32,6 +42,16 @@ router.post('/', HomePageValidations.createHomePage, (req: Request, res: Respons
  */
 router.put('/:id', HomePageValidations.updateHomePage, (req: Request, res: Response) => {
   HomePageController.updateHomePage(req, res);
+});
+
+/**
+ * @route DELETE /api/home/:id
+ * @description Delete home page data by ID
+ * @returns JSON
+ * @access public
+ */
+router.delete('/:id', (req: Request, res: Response) => {
+  HomePageController.deleteHomePage(req, res);
 });
 
 const homeRoutes = router;

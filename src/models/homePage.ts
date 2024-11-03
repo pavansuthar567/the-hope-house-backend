@@ -1,26 +1,40 @@
-import mongoose, { Document, Schema } from 'mongoose';
+import mongoose, { Document, Schema, Model } from 'mongoose';
+import { IUser } from './user';
 
 export interface IHomePage extends Document {
   logo: string;
   quote: string;
   heroSectionVideo: string;
-  statistics: string; // Consider using a more structured format for stats if necessary
   whoWeAre: string;
   whatWeDo: string;
-  createdAt?: Date;
-  createdBy?: string;
+  termsOfUse: string;
+  privacyPolicy: string;
+  isActive: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+  createdBy: IUser['_id'];
+  updatedBy: IUser['_id'];
 }
 
-const HomePageSchema: Schema = new Schema({
+const HomePageSchema: Schema<IHomePage> = new Schema({
   logo: { type: String, required: true },
   quote: { type: String, required: true },
   heroSectionVideo: { type: String, required: true },
-  statistics: { type: String, required: true }, // Or a structured object
   whoWeAre: { type: String, required: true },
   whatWeDo: { type: String, required: true },
+  termsOfUse: { type: String, required: true },
+  privacyPolicy: { type: String, required: true },
+  isActive: { type: Boolean, default: false },
   createdAt: { type: Date, default: Date.now },
-  createdBy: { type: String, optional: true },
+  updatedAt: { type: Date, default: Date.now },
+  createdBy: { type: Schema.Types.ObjectId, ref: 'users', required: true },
+  updatedBy: { type: Schema.Types.ObjectId, ref: 'users', required: true },
 });
 
-const HomePageModel = mongoose.model<IHomePage>('HomePage', HomePageSchema);
+// Auto-populate createdBy and updatedBy fields during queries
+HomePageSchema.pre('find', function () {
+  this.populate('createdBy updatedBy');
+});
+
+const HomePageModel: Model<IHomePage> = mongoose.model<IHomePage>('HomePage', HomePageSchema);
 export default HomePageModel;
