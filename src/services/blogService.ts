@@ -1,4 +1,4 @@
-import BlogModel, { IBlog } from "../models/blog";
+import BlogModel, { IBlog } from '../models/blog';
 
 export default class BlogService {
   static async getBlogs(): Promise<IBlog[]> {
@@ -11,6 +11,8 @@ export default class BlogService {
 
   static async createBlog(data: IBlog): Promise<IBlog> {
     try {
+      if (!data.publishedDate && data?.status === 'Published') data.publishedDate = new Date();
+
       const blog = new BlogModel(data);
       await blog.save();
       return blog;
@@ -32,6 +34,8 @@ export default class BlogService {
 
   static async updateBlog(id: string, data: Partial<IBlog>): Promise<IBlog | null> {
     try {
+      if (!data.publishedDate && data?.status === 'Published') data.publishedDate = new Date();
+
       const updatedBlog = await BlogModel.findByIdAndUpdate(id, data, { new: true });
       if (!updatedBlog) {
         throw new Error('Blog not found');
