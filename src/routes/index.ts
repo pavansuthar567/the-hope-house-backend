@@ -27,9 +27,9 @@ const initRoutes = (app: Application): void => {
   app.use('/api/blog', blogRoutes);
   app.use('/api/quote', quoteRoutes); //
   app.use('/api/home-page', homeRoutes);
-  app.use('/api/gallery', galleryRoutes);
+  app.use('/api/gallery', galleryRoutes); //
   app.use('/api/recognition', recognitionRoutes);
-  app.use('/api/ancillary-page', ancillaryPageRoutes);
+  // app.use('/api/ancillary-page', ancillaryPageRoutes); // Included fields in home page, so not required for now
 };
 
 export default initRoutes;

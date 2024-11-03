@@ -4,6 +4,8 @@ import initRoutes from './routes';
 import bodyParser from 'body-parser';
 import express, { Application } from 'express';
 import passportConfig from './config/passport';
+import swaggerUi from 'swagger-ui-express';
+import swaggerDocument from '../docs/swagger.json';
 
 const app: Application = express();
 
@@ -20,6 +22,9 @@ app.use(
     origin: '*', // Allow requests from any origin
   }),
 );
+
+// Serve Swagger UI
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Routes initialization
 initRoutes(app);
