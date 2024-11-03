@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import BlogService from '../../services/blogService';
 import { createError, createResponse } from '../../utils/helpers';
+import mongoose from 'mongoose';
 
 export default class BlogController {
   static async getBlogs(req: Request, res: Response) {
@@ -14,7 +15,10 @@ export default class BlogController {
 
   static async createBlog(req: Request, res: Response) {
     try {
-      const blog = await BlogService.createBlog(req.body);
+      const user = new mongoose.Types.ObjectId('672335cb8b57a8954d79d1c2');
+      const payload = { ...req.body, createdBy: user, updatedBy: user };
+
+      const blog = await BlogService.createBlog(payload);
       return createResponse(res, 'ok', 'Blog created successfully.', blog, {}, 201);
     } catch (error) {
       return createError(res, error);
