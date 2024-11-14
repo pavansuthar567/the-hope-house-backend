@@ -1,5 +1,6 @@
-import ancillaryPageRoutes from '../components/ancillaryPage/ancillaryPage.route';
+// import ancillaryPageRoutes from '../components/ancillaryPage/ancillaryPage.route';
 import blogRoutes from '../components/blog/blog.route';
+import dashboardRoutes from '../components/dashboard/dashboard.route';
 import eventRoutes from '../components/event/event.route';
 import faqRoutes from '../components/faq/faq.route';
 import galleryRoutes from '../components/gallery/gallery.route';
@@ -29,6 +30,7 @@ const initRoutes = (app: Application): void => {
   app.use('/api/home-page', homeRoutes);
   app.use('/api/gallery', galleryRoutes); //
   app.use('/api/recognition', recognitionRoutes);
+  app.use('/api/dashboard', dashboardRoutes); //
   // app.use('/api/ancillary-page', ancillaryPageRoutes); // Included fields in home page, so not required for now
 };
 
