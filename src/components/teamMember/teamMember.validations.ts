@@ -6,17 +6,18 @@ const TeamMemberValidations = {
     const schema = Joi.object({
       firstName: Joi.string().min(2).required(),
       lastName: Joi.string().min(2).required(),
-      email: Joi.string().email().required(),
+      email: Joi.string().email().allow('').optional(),
       phoneNumber: Joi.string()
         .pattern(/^[0-9]{10}$/)
         .required(),
       address: Joi.object({
-        street: Joi.string().required(),
+        street: Joi.string().allow('').optional(),
         city: Joi.string().required(),
         state: Joi.string().required(),
         zipCode: Joi.string()
           .pattern(/^[0-9]{6}$/)
-          .required(),
+          .allow('')
+          .optional(),
       }).required(),
       role: Joi.string().required(),
       bio: Joi.string().required(),
@@ -25,7 +26,6 @@ const TeamMemberValidations = {
       socialMediaLinks: Joi.object({
         linkedIn: Joi.string().uri().optional(),
         twitter: Joi.string().uri().optional(),
-        facebook: Joi.string().uri().optional(),
         instagram: Joi.string().uri().optional(),
       }).optional(),
       profilePictureUrl: Joi.string().uri().optional(),
@@ -46,16 +46,17 @@ const TeamMemberValidations = {
     const schema = Joi.object({
       firstName: Joi.string().min(2).optional(),
       lastName: Joi.string().min(2).optional(),
-      email: Joi.string().email().optional(),
+      email: Joi.string().email().allow('').optional(),
       phoneNumber: Joi.string()
         .pattern(/^[0-9]{10}$/)
         .optional(),
       address: Joi.object({
-        street: Joi.string().optional(),
+        street: Joi.string().allow('').optional(),
         city: Joi.string().optional(),
         state: Joi.string().optional(),
         zipCode: Joi.string()
           .pattern(/^[0-9]{6}$/)
+          .allow('')
           .optional(),
       }).optional(),
       role: Joi.string().optional(),
@@ -65,7 +66,6 @@ const TeamMemberValidations = {
       socialMediaLinks: Joi.object({
         linkedIn: Joi.string().uri().optional(),
         twitter: Joi.string().uri().optional(),
-        facebook: Joi.string().uri().optional(),
         instagram: Joi.string().uri().optional(),
       }).optional(),
       profilePictureUrl: Joi.string().uri().optional(),
