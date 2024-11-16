@@ -1,16 +1,15 @@
 import mongoose, { Schema, Document, Model } from 'mongoose';
 
 interface IAddress {
-  street: string;
+  street?: string; // Made optional
   city: string;
   state: string;
-  zipCode: string;
+  zipCode?: string; // Made optional
 }
 
 interface ISocialMediaLinks {
   linkedIn?: string;
   twitter?: string;
-  facebook?: string;
   instagram?: string;
 }
 
@@ -29,23 +28,22 @@ export interface ITeamMember extends Document {
 }
 
 const addressSchema = new Schema<IAddress>({
-  street: { type: String, required: true },
+  street: { type: String }, // Made optional
   city: { type: String, required: true },
   state: { type: String, required: true },
-  zipCode: { type: String, required: true },
+  zipCode: { type: String }, // Made optional
 });
 
 const socialMediaLinksSchema = new Schema<ISocialMediaLinks>({
   linkedIn: { type: String },
   twitter: { type: String },
-  facebook: { type: String },
   instagram: { type: String },
 });
 
 const teamMemberSchema = new Schema<ITeamMember>({
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
+  email: { type: String, unique: true },
   phoneNumber: { type: String, required: true },
   address: { type: addressSchema, required: true },
   role: { type: String, required: true },

@@ -16,7 +16,7 @@ export default class VolunteerService {
       return volunteer;
     } catch (error: any) {
       if (error.code === 11000) {
-        throw new Error('Duplicate key error: ' + JSON.stringify(error.keyValue));
+        throw new Error('Volunteer already registered: ' + JSON.stringify(error.keyValue));
       }
       throw new Error('Error creating volunteer: ' + error.message);
     }
@@ -39,7 +39,7 @@ export default class VolunteerService {
       return updatedVolunteer;
     } catch (error: any) {
       if (error.code === 11000) {
-        throw new Error('Duplicate key error: ' + JSON.stringify(error.keyValue));
+        throw new Error('Volunteer already registered: ' + JSON.stringify(error.keyValue));
       }
       throw new Error('Error updating volunteer: ' + error.message);
     }

@@ -16,7 +16,7 @@ export default class TeamMemberService {
       return teamMember;
     } catch (error: any) {
       if (error.code === 11000) {
-        throw new Error('Duplicate key error: ' + JSON.stringify(error.keyValue));
+        throw new Error('Team member already registered: ' + JSON.stringify(error.keyValue));
       }
       throw new Error('Error creating team member: ' + error.message);
     }
@@ -39,7 +39,7 @@ export default class TeamMemberService {
       return updatedTeamMember;
     } catch (error: any) {
       if (error.code === 11000) {
-        throw new Error('Duplicate key error: ' + JSON.stringify(error.keyValue));
+        throw new Error('Team member already registered: ' + JSON.stringify(error.keyValue));
       }
       throw new Error('Error updating team member: ' + error.message);
     }
