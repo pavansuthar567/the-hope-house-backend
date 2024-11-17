@@ -6,7 +6,7 @@ const GalleryValidations = {
     const schema = Joi.object({
       imageUrl: Joi.string().uri().required(),
       caption: Joi.string().optional(),
-      mission: Joi.string().required(),
+      eventId: Joi.string().optional(),
       createdAt: Joi.date().optional(),
       createdBy: Joi.string().optional(),
     });
@@ -26,7 +26,7 @@ const GalleryValidations = {
     const schema = Joi.object({
       imageUrl: Joi.string().uri(),
       caption: Joi.string(),
-      mission: Joi.string(),
+      eventId: Joi.string().optional(),
       createdAt: Joi.date(),
       createdBy: Joi.string(),
     });

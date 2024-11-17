@@ -1,9 +1,10 @@
-import { Schema, model, Document } from 'mongoose';
+import mongoose, { Schema, model, Document } from 'mongoose';
+import { IEvent } from './event';
 
 export interface IGallery extends Document {
   imageUrl: string;
   caption?: string;
-  mission: string;
+  eventId?: IEvent['_id'];
   createdAt?: Date;
   createdBy?: string;
 }
@@ -17,9 +18,9 @@ const GallerySchema = new Schema<IGallery>({
     type: String,
     required: false,
   },
-  mission: {
-    type: String,
-    required: true,
+  eventId: {
+    type: Schema.Types.ObjectId,
+    ref: 'events',
   },
   createdAt: {
     type: Date,
@@ -29,6 +30,10 @@ const GallerySchema = new Schema<IGallery>({
     type: String,
     required: false,
   },
+});
+
+GallerySchema.pre('find', function () {
+  this.populate('eventId');
 });
 
 const GalleryModel = model<IGallery>('Gallery', GallerySchema);
