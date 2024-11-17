@@ -20,7 +20,7 @@ export interface IEvent extends Document {
   participantsRegistered: number;
   eventType: 'In-Person' | 'Virtual';
   registrationLink?: string;
-  featuredImage?: string;
+  featuredImage?: string[];
   status: 'Upcoming' | 'Completed' | 'Cancelled';
 }
 
@@ -42,7 +42,7 @@ const eventSchema = new Schema<IEvent>({
   participantsRegistered: { type: Number, default: 0 },
   eventType: { type: String, enum: ['In-Person', 'Virtual'], required: true },
   registrationLink: { type: String },
-  featuredImage: { type: String },
+  featuredImage: { type: [String] },
   status: { type: String, enum: ['Upcoming', 'Completed', 'Cancelled'], required: true },
 });
 

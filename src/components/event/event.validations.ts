@@ -19,7 +19,7 @@ const EventValidations = {
       participantsRegistered: Joi.number().default(0),
       eventType: Joi.string().valid('In-Person', 'Virtual').required(),
       registrationLink: Joi.string().uri().optional(),
-      featuredImage: Joi.string().uri().optional(),
+      featuredImage: Joi.array().items(Joi.string().uri()).optional(),
       status: Joi.string().valid('Upcoming', 'Completed', 'Cancelled').required(),
     });
 
@@ -51,7 +51,7 @@ const EventValidations = {
       participantsRegistered: Joi.number().optional(),
       eventType: Joi.string().valid('In-Person', 'Virtual').optional(),
       registrationLink: Joi.string().uri().optional(),
-      featuredImage: Joi.string().uri().optional(),
+      featuredImage: Joi.array().items(Joi.string().uri()).optional(),
       status: Joi.string().valid('Upcoming', 'Completed', 'Cancelled').optional(),
     });
 

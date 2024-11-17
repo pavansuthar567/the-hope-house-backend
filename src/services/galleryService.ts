@@ -1,9 +1,17 @@
 import GalleryModel, { IGallery } from '../models/gallery';
 
 export default class GalleryService {
-  static async getGallery(): Promise<IGallery[]> {
+  static async getGallery(): Promise<any[]> {
     try {
-      return await GalleryModel.find();
+      const galleries = await GalleryModel.find().lean();
+      const updatedList = galleries.map((gallery: any) => {
+        if (gallery?.eventId) {
+          gallery.event = gallery.eventId;
+          gallery.eventId = gallery?.event?._id;
+        }
+        return gallery;
+      });
+      return updatedList;
     } catch (error) {
       throw new Error('Error fetching gallery items');
     }
