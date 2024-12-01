@@ -19,14 +19,13 @@ const TeamMemberValidations = {
           .allow('')
           .optional(),
       }).required(),
-      role: Joi.string().required(),
-      bio: Joi.string().required(),
+      role: Joi.string().allow('').optional(),
+      bio: Joi.string().allow('').optional(),
       dateOfJoining: Joi.date().optional(),
-      skills: Joi.array().items(Joi.string()).required(),
       socialMediaLinks: Joi.object({
-        linkedIn: Joi.string().uri().optional(),
-        twitter: Joi.string().uri().optional(),
-        instagram: Joi.string().uri().optional(),
+        linkedIn: Joi.string().uri().allow('').optional(),
+        twitter: Joi.string().uri().allow('').optional(),
+        instagram: Joi.string().uri().allow('').optional(),
       }).optional(),
       profilePictureUrl: Joi.string().uri().optional(),
     });
@@ -59,14 +58,13 @@ const TeamMemberValidations = {
           .allow('')
           .optional(),
       }).optional(),
-      role: Joi.string().optional(),
-      bio: Joi.string().optional(),
+      role: Joi.string().allow('').optional(),
+      bio: Joi.string().allow('').optional(),
       dateOfJoining: Joi.date().optional(),
-      skills: Joi.array().items(Joi.string()).optional(),
       socialMediaLinks: Joi.object({
-        linkedIn: Joi.string().uri().optional(),
-        twitter: Joi.string().uri().optional(),
-        instagram: Joi.string().uri().optional(),
+        linkedIn: Joi.string().uri().allow('').optional(),
+        twitter: Joi.string().uri().allow('').optional(),
+        instagram: Joi.string().uri().allow('').optional(),
       }).optional(),
       profilePictureUrl: Joi.string().uri().optional(),
     });

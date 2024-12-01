@@ -19,11 +19,10 @@ export interface ITeamMember extends Document {
   email: string;
   phoneNumber: string;
   address: IAddress;
-  role: string; // e.g. 'Manager', 'Coordinator'
+  role: string;
   bio: string;
   dateOfJoining: Date;
-  skills: string[];
-  socialMediaLinks: ISocialMediaLinks;
+  socialMediaLinks?: ISocialMediaLinks;
   profilePictureUrl?: string;
 }
 
@@ -47,10 +46,9 @@ const teamMemberSchema = new Schema<ITeamMember>({
   phoneNumber: { type: String, required: true },
   address: { type: addressSchema, required: true },
   role: { type: String, required: true },
-  bio: { type: String, required: true },
+  bio: { type: String },
   dateOfJoining: { type: Date, default: Date.now },
-  skills: { type: [String], required: true },
-  socialMediaLinks: { type: socialMediaLinksSchema },
+  socialMediaLinks: { type: socialMediaLinksSchema, required: false },
   profilePictureUrl: { type: String },
 });
 

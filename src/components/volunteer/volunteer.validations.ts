@@ -16,6 +16,7 @@ const VolunteerValidations = {
       skills: Joi.array().items(Joi.string()).required(),
       availability: Joi.string().valid('Full-time', 'Part-time', 'Weekends').required(),
       experience: Joi.string().optional(),
+      fromSite: Joi.boolean().default(false),
     });
 
     const { error } = schema.validate(req.body);
@@ -45,6 +46,7 @@ const VolunteerValidations = {
       skills: Joi.array().items(Joi.string()),
       availability: Joi.string().valid('Full-time', 'Part-time', 'Weekends'),
       experience: Joi.string(),
+      fromSite: Joi.boolean().optional(),
     });
 
     const { error } = schema.validate(req.body);
