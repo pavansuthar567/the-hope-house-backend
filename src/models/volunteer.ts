@@ -15,6 +15,7 @@ export interface IVolunteer extends Document {
   skills: string[];
   availability: 'Full-time' | 'Part-time' | 'Weekends';
   experience?: string;
+  fromSite?: boolean;
 }
 
 const addressSchema = new Schema<IAddress>({
@@ -33,6 +34,7 @@ const volunteerSchema = new Schema<IVolunteer>(
     skills: { type: [String], required: true },
     availability: { type: String, enum: ['Full-time', 'Part-time', 'Weekends'], required: true },
     experience: { type: String },
+    fromSite: { type: Boolean, default: false },
   },
   { versionKey: false },
 );
