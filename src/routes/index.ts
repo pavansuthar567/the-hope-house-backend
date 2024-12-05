@@ -5,6 +5,7 @@ import eventRoutes from '../components/event/event.route';
 import faqRoutes from '../components/faq/faq.route';
 import galleryRoutes from '../components/gallery/gallery.route';
 import homeRoutes from '../components/homePage/homePage.route';
+import messageRoutes from '../components/message/message.route';
 import quoteRoutes from '../components/quote/quote.route';
 import recognitionRoutes from '../components/recognition/recognition.route';
 import teamMemberRoutes from '../components/teamMember/teamMember.route';
@@ -30,6 +31,7 @@ const initRoutes = (app: Application): void => {
   app.use('/api/home-page', homeRoutes);
   app.use('/api/gallery', galleryRoutes); //
   app.use('/api/recognition', recognitionRoutes);
+  app.use('/api/message', messageRoutes); // Message or Enquiry from website
   app.use('/api/dashboard', dashboardRoutes); //
   // app.use('/api/ancillary-page', ancillaryPageRoutes); // Included fields in home page, so not required for now
 };
