@@ -16,6 +16,7 @@ export interface IEvent extends Document {
   capacity: number;
   participantsRegistered: number;
   eventType: string;
+  content: string;
   registrationLink?: string;
   featuredImage?: string[];
   status: 'Upcoming' | 'Completed' | 'Cancelled';
@@ -59,6 +60,7 @@ const eventSchema = new Schema<IEvent>({
     ],
     required: true,
   },
+  content: { type: String, required: true },
   registrationLink: { type: String },
   featuredImage: { type: [String] },
   status: { type: String, enum: ['Upcoming', 'Completed', 'Cancelled'], required: true },
