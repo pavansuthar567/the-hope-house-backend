@@ -19,6 +19,7 @@ export interface IEvent extends Document {
   content: string;
   registrationLink?: string;
   featuredImage?: string[];
+  whatsappLink?: string;
   status: 'Upcoming' | 'Completed' | 'Cancelled';
   createdAt: Date;
   updatedAt: Date;
@@ -63,6 +64,7 @@ const eventSchema = new Schema<IEvent>({
   content: { type: String, required: true },
   registrationLink: { type: String },
   featuredImage: { type: [String] },
+  whatsappLink: { type: String },
   status: { type: String, enum: ['Upcoming', 'Completed', 'Cancelled'], required: true },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
