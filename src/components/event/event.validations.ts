@@ -1,6 +1,5 @@
 import Joi from 'joi';
 import { Request, Response, NextFunction } from 'express';
-import mongoose from 'mongoose';
 
 const EventValidations = {
   createEvent: (req: Request, res: Response, next: NextFunction): void => {
@@ -20,6 +19,7 @@ const EventValidations = {
       eventType: Joi.string().required(),
       registrationLink: Joi.string().uri().optional(),
       featuredImage: Joi.array().items(Joi.string().uri()).optional(),
+      whatsappLink: Joi.string().uri().optional(),
       status: Joi.string().valid('Upcoming', 'Completed', 'Cancelled').required(),
     });
 
@@ -51,6 +51,7 @@ const EventValidations = {
       eventType: Joi.string().required(),
       registrationLink: Joi.string().uri().optional(),
       featuredImage: Joi.array().items(Joi.string().uri()).optional(),
+      whatsappLink: Joi.string().uri().optional(),
       status: Joi.string().valid('Upcoming', 'Completed', 'Cancelled').optional(),
       createdAt: Joi.date().optional(),
       createdBy: Joi.string().optional(),
