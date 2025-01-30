@@ -12,6 +12,28 @@ const HomePageValidations = {
       termsOfUse: Joi.string().min(10).required(),
       privacyPolicy: Joi.string().min(10).required(),
       isActive: Joi.boolean().required(),
+      pageImages: Joi.object({
+        home: Joi.object({
+          whyChooseThumb1: Joi.string().uri().optional(),
+          whyChooseThumb2: Joi.string().uri().optional(),
+          togetherBg: Joi.string().uri().optional(),
+        }).optional(),
+        pageTitleBackgrounds: Joi.object({
+          about: Joi.string().uri().optional(),
+          teamMembers: Joi.string().uri().optional(),
+          event: Joi.string().uri().optional(),
+          gallery: Joi.string().uri().optional(),
+          faq: Joi.string().uri().optional(),
+          blog: Joi.string().uri().optional(),
+          contact: Joi.string().uri().optional(),
+          donate: Joi.string().uri().optional(),
+          volunteer: Joi.string().uri().optional(),
+        }).optional(),
+        aboutUsPage: Joi.object({
+          empowerCommunities: Joi.string().uri().optional(),
+          supportTheNextInitiative: Joi.string().uri().optional(),
+        }).optional(),
+      }).optional(),
     });
 
     const { error } = schema.validate(req.body);
@@ -40,6 +62,28 @@ const HomePageValidations = {
       updatedBy: Joi.string().required(),
       createdAt: Joi.date().optional(),
       updatedAt: Joi.date().optional(),
+      pageImages: Joi.object({
+        home: Joi.object({
+          whyChooseThumb1: Joi.string().uri().optional(),
+          whyChooseThumb2: Joi.string().uri().optional(),
+          togetherBg: Joi.string().uri().optional(),
+        }).optional(),
+        pageTitleBackgrounds: Joi.object({
+          about: Joi.string().uri().optional(),
+          teamMembers: Joi.string().uri().optional(),
+          event: Joi.string().uri().optional(),
+          gallery: Joi.string().uri().optional(),
+          faq: Joi.string().uri().optional(),
+          blog: Joi.string().uri().optional(),
+          contact: Joi.string().uri().optional(),
+          donate: Joi.string().uri().optional(),
+          volunteer: Joi.string().uri().optional(),
+        }).optional(),
+        aboutUsPage: Joi.object({
+          empowerCommunities: Joi.string().uri().optional(),
+          supportTheNextInitiative: Joi.string().uri().optional(),
+        }).optional(),
+      }).optional(),
     });
 
     const { error } = schema.validate(req.body);
