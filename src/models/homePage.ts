@@ -14,6 +14,34 @@ export interface IHomePage extends Document {
   updatedAt: Date;
   createdBy: IUser['_id'];
   updatedBy: IUser['_id'];
+  // statistics: {
+  //   beneficiaryServed: 0;
+  //   totalVolunteers: 0;
+  //   cityPresence: 0;
+  //   donationReceived: 0;
+  // };
+  pageImages: {
+    home: {
+      whyChooseThumb1: string;
+      whyChooseThumb2: string;
+      togetherBg: string;
+    };
+    pageTitleBackgrounds: {
+      about: string;
+      teamMembers: string;
+      event: string;
+      gallery: string;
+      faq: string;
+      blog: string;
+      contact: string;
+      donate: string;
+      volunteer: string;
+    };
+    aboutUsPage: {
+      empowerCommunities: string;
+      supportTheNextInitiative: string;
+    };
+  };
 }
 
 const HomePageSchema: Schema<IHomePage> = new Schema({
@@ -29,6 +57,28 @@ const HomePageSchema: Schema<IHomePage> = new Schema({
   updatedAt: { type: Date, default: Date.now },
   createdBy: { type: Schema.Types.ObjectId, ref: 'users', required: true },
   updatedBy: { type: Schema.Types.ObjectId, ref: 'users', required: true },
+  pageImages: {
+    home: {
+      whyChooseThumb1: { type: String },
+      whyChooseThumb2: { type: String },
+      togetherBg: { type: String },
+    },
+    pageTitleBackgrounds: {
+      about: { type: String },
+      teamMembers: { type: String },
+      event: { type: String },
+      gallery: { type: String },
+      faq: { type: String },
+      blog: { type: String },
+      contact: { type: String },
+      donate: { type: String },
+      volunteer: { type: String },
+    },
+    aboutUsPage: {
+      empowerCommunities: { type: String },
+      supportTheNextInitiative: { type: String },
+    },
+  },
 });
 
 // Auto-populate createdBy and updatedBy fields during queries
