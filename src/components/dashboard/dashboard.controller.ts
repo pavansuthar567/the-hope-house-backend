@@ -11,4 +11,14 @@ export default class DashboardController {
       return createError(res, error);
     }
   }
+
+  static async processWebhook(req: Request, res: Response) {
+    try {
+      const webhookData = req.body; // Raw JSON data from TradingView
+      await DashboardService.saveWebhookData(webhookData); // Save to MongoDB
+      return createResponse(res, 'ok', 'Webhook data processed successfully.', webhookData);
+    } catch (error) {
+      return createError(res, error);
+    }
+  }
 }
