@@ -1,6 +1,7 @@
 import VolunteerModel from '../models/volunteer';
 import EventModel from '../models/event';
 import TestimonialModel from '../models/testimonial';
+import TradingViewAlertModel from '../models/tradingViewAlert';
 
 export default class DashboardService {
   static async getStatistics() {
@@ -20,5 +21,10 @@ export default class DashboardService {
     } catch (error: any) {
       throw new Error('Error fetching statistics: ' + error.message);
     }
+  }
+
+  static async saveWebhookData(data: any) {
+    const alert = new TradingViewAlertModel({ rawData: data });
+    return await alert.save();
   }
 }
