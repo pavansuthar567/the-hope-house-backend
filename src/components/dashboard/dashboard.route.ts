@@ -18,9 +18,9 @@ router.get('/statistics', (req: Request, res: Response) => {
  * @returns JSON
  * @access Public (but secure with a secret key)
  */
-router.post('/webhooks/tradingview', (req: Request, res: Response) => {
-  DashboardController.processWebhook(req, res);
-});
+// router.post('/webhooks/tradingview', express.text({ type: '*/*' }), (req: Request, res: Response) => {
+//   DashboardController.processWebhook(req, res);
+// });
 
 const dashboardRoutes = router;
 export default dashboardRoutes;
