@@ -21,7 +21,7 @@ app.use(cors());
  */
 // Mount webhook route before global JSON middleware
 app.post(
-  '/api/webhooks/tradingview',
+  '/api/dashboard/webhooks/tradingview',
   express.text({ type: '*/*' }),
   (req: Request, res: Response, next: NextFunction) => {
     DashboardController.processWebhook(req, res, next);
