@@ -15,10 +15,10 @@ export default class DashboardController {
   static async processWebhook(req: Request, res: Response) {
     try {
       const webhookData = req.body; // Raw JSON data from TradingView - // Raw text from TradingView
-      const webhookData1 = JSON.parse(webhookData); // Parse to JSON
       console.log('webhookData', webhookData)
-      console.log('webhookData1', webhookData1)
       console.log('req.headers[content-type]', req.headers['content-type'])
+      const webhookData1 = JSON.parse(webhookData); // Parse to JSON
+      console.log('webhookData1', webhookData1)
 
       await DashboardService.saveWebhookData(webhookData); // Save to MongoDB
       return createResponse(res, 'ok', 'Webhook data processed successfully.', webhookData1);
