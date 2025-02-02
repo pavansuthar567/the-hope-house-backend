@@ -15,7 +15,8 @@ export default class DashboardController {
   static async processWebhook(req: Request, res: Response, next: NextFunction) {
     try {
       const body = req.body;
-      const webhookData = typeof body === 'string' ? JSON.parse(body) : body;
+      const webhookData = typeof body === 'string' && body.trim().startsWith('{') ? JSON.parse(body) : { message: body };
+      // const webhookData = typeof body === 'string' ? JSON.parse(body) : body;
   
       console.log('webhookData', webhookData);
       console.log('req.headers[content-type]', req.headers['content-type']);
