@@ -16,6 +16,8 @@ export default class DashboardController {
     try {
       const webhookData = req.body; // Raw JSON data from TradingView
       console.log('webhookData', webhookData)
+      console.log('req.headers[content-type]', req.headers['content-type'])
+      
       await DashboardService.saveWebhookData(webhookData); // Save to MongoDB
       return createResponse(res, 'ok', 'Webhook data processed successfully.', webhookData);
     } catch (error) {
