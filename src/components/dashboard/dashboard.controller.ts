@@ -14,16 +14,16 @@ export default class DashboardController {
 
   static async processWebhook(req: Request, res: Response) {
     try {
-      const webhookData = req.body; // Raw JSON data from TradingView - // Raw text from TradingView
-      console.log('webhookData', webhookData)
-      console.log('req.headers[content-type]', req.headers['content-type'])
-      const webhookData1 = JSON.parse(webhookData); // Parse to JSON
-      console.log('webhookData1', webhookData1)
-
-      await DashboardService.saveWebhookData(webhookData); // Save to MongoDB
-      return createResponse(res, 'ok', 'Webhook data processed successfully.', webhookData1);
+      const body = req.body;
+      // If body is a string, parse it; otherwise assume it's already an object
+      const webhookData = typeof body === 'string' ? JSON.parse(body) : body;
+      console.log('webhookData', webhookData);
+      console.log('req.headers[content-type]', req.headers['content-type']);
+  
+      await DashboardService.saveWebhookData(webhookData);
+      return createResponse(res, 'ok', 'Webhook data processed successfully.', webhookData);
     } catch (error) {
       return createError(res, error);
     }
-  }
+  }  
 }
