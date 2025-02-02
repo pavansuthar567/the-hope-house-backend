@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import DashboardService from '../../services/dashboardService';
 import { createError, createResponse } from '../../utils/helpers';
 
@@ -12,18 +12,18 @@ export default class DashboardController {
     }
   }
 
-  static async processWebhook(req: Request, res: Response) {
+  static async processWebhook(req: Request, res: Response, next: NextFunction) {
     try {
       const body = req.body;
-      // If body is a string, parse it; otherwise assume it's already an object
       const webhookData = typeof body === 'string' ? JSON.parse(body) : body;
+  
       console.log('webhookData', webhookData);
       console.log('req.headers[content-type]', req.headers['content-type']);
   
       await DashboardService.saveWebhookData(webhookData);
       return createResponse(res, 'ok', 'Webhook data processed successfully.', webhookData);
     } catch (error) {
-      return createError(res, error);
+      next(error); // Pass error to Next.js error handler
     }
   }  
 }
