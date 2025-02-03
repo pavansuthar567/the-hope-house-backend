@@ -22,5 +22,9 @@ router.get('/statistics', (req: Request, res: Response) => {
 //   DashboardController.processWebhook(req, res);
 // });
 
+router.get('/webhooks/tradingview', (req: Request, res: Response) => {
+  DashboardController.getAlerts(req, res);
+});
+
 const dashboardRoutes = router;
 export default dashboardRoutes;

@@ -27,4 +27,13 @@ export default class DashboardController {
       next(error); // Pass error to Next.js error handler
     }
   }  
+
+  static async getAlerts(req: Request, res: Response) {
+    try {
+      const statistics = await DashboardService.getAlerts();
+      return createResponse(res, 'ok', 'Alerts retrieved successfully.', statistics);
+    } catch (error) {
+      return createError(res, error);
+    }
+  }
 }
