@@ -12,6 +12,12 @@ const HomePageValidations = {
       termsOfUse: Joi.string().min(10).required(),
       privacyPolicy: Joi.string().min(10).required(),
       isActive: Joi.boolean().required(),
+      statistics: Joi.object({
+        beneficiaryServed: Joi.number().min(0).required(),
+        totalVolunteers: Joi.number().min(0).required(),
+        cityPresence: Joi.number().min(0).required(),
+        donationReceived: Joi.number().min(0).required(),
+      }).required(),
       pageImages: Joi.object({
         home: Joi.object({
           whyChooseThumb1: Joi.string().uri().optional(),
@@ -62,6 +68,12 @@ const HomePageValidations = {
       updatedBy: Joi.string().required(),
       createdAt: Joi.date().optional(),
       updatedAt: Joi.date().optional(),
+      statistics: Joi.object({
+        beneficiaryServed: Joi.number().min(0).optional(),
+        totalVolunteers: Joi.number().min(0).optional(),
+        cityPresence: Joi.number().min(0).optional(),
+        donationReceived: Joi.number().min(0).optional(),
+      }).optional(),
       pageImages: Joi.object({
         home: Joi.object({
           whyChooseThumb1: Joi.string().uri().optional(),

@@ -14,12 +14,12 @@ export interface IHomePage extends Document {
   updatedAt: Date;
   createdBy: IUser['_id'];
   updatedBy: IUser['_id'];
-  // statistics: {
-  //   beneficiaryServed: 0;
-  //   totalVolunteers: 0;
-  //   cityPresence: 0;
-  //   donationReceived: 0;
-  // };
+  statistics: {
+    beneficiaryServed: number;
+    totalVolunteers: number;
+    cityPresence: number;
+    donationReceived: number;
+  };
   pageImages: {
     home: {
       whyChooseThumb1: string;
@@ -57,6 +57,12 @@ const HomePageSchema: Schema<IHomePage> = new Schema({
   updatedAt: { type: Date, default: Date.now },
   createdBy: { type: Schema.Types.ObjectId, ref: 'users', required: true },
   updatedBy: { type: Schema.Types.ObjectId, ref: 'users', required: true },
+  statistics: {
+    beneficiaryServed: { type: Number, default: 0 },
+    totalVolunteers: { type: Number, default: 0 },
+    cityPresence: { type: Number, default: 0 },
+    donationReceived: { type: Number, default: 0 },
+  },
   pageImages: {
     home: {
       whyChooseThumb1: { type: String },
