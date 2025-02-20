@@ -1,10 +1,17 @@
 import Joi from 'joi';
 import { Request, Response, NextFunction } from 'express';
 
+const getImageMessage = (fieldName: string) => {
+  return {
+    'any.required': fieldName + ' is required',
+    'string.empty': fieldName + ' is required',
+  };
+};
+
 const HomePageValidations = {
   createHomePage: (req: Request, res: Response, next: NextFunction): void => {
     const schema = Joi.object({
-      logo: Joi.string().uri().required(),
+      logo: Joi.string().uri().required().messages(getImageMessage('Logo')),
       quote: Joi.string().min(5).max(255).required(),
       heroSectionVideo: Joi.string().uri().required(),
       whoWeAre: Joi.string().min(10).required(),
@@ -20,24 +27,27 @@ const HomePageValidations = {
       }).required(),
       pageImages: Joi.object({
         home: Joi.object({
-          whyChooseThumb1: Joi.string().uri().optional(),
-          whyChooseThumb2: Joi.string().uri().optional(),
-          togetherBg: Joi.string().uri().optional(),
+          whyChooseThumb1: Joi.string().uri().required().messages(getImageMessage('Why Choose Thumb1')),
+          whyChooseThumb2: Joi.string().uri().required().messages(getImageMessage('Why Choose Thumb2')),
+          togetherBg: Joi.string().uri().required().messages(getImageMessage('Together Background')),
         }).optional(),
         pageTitleBackgrounds: Joi.object({
-          about: Joi.string().uri().optional(),
-          teamMembers: Joi.string().uri().optional(),
-          event: Joi.string().uri().optional(),
-          gallery: Joi.string().uri().optional(),
-          faq: Joi.string().uri().optional(),
-          blog: Joi.string().uri().optional(),
-          contact: Joi.string().uri().optional(),
-          donate: Joi.string().uri().optional(),
-          volunteer: Joi.string().uri().optional(),
+          about: Joi.string().uri().required().messages(getImageMessage('About page background')),
+          teamMembers: Joi.string().uri().required().messages(getImageMessage('Team Members page background')),
+          event: Joi.string().uri().required().messages(getImageMessage('Event page background')),
+          gallery: Joi.string().uri().required().messages(getImageMessage('Gallery page background')),
+          faq: Joi.string().uri().required().messages(getImageMessage('FAQ page background')),
+          blog: Joi.string().uri().required().messages(getImageMessage('Blog page background')),
+          contact: Joi.string().uri().required().messages(getImageMessage('Contact page background')),
+          donate: Joi.string().uri().required().messages(getImageMessage('Donate page background')),
+          volunteer: Joi.string().uri().required().messages(getImageMessage('Volunteer page background')),
         }).optional(),
         aboutUsPage: Joi.object({
-          empowerCommunities: Joi.string().uri().optional(),
-          supportTheNextInitiative: Joi.string().uri().optional(),
+          empowerCommunities: Joi.string().uri().required().messages(getImageMessage('Empower Communities image')),
+          supportTheNextInitiative: Joi.string()
+            .uri()
+            .required()
+            .messages(getImageMessage('Support The Next Initiative image')),
         }).optional(),
       }).optional(),
     });
@@ -56,7 +66,7 @@ const HomePageValidations = {
   updateHomePage: (req: Request, res: Response, next: NextFunction): void => {
     const schema = Joi.object({
       _id: Joi.string().optional(),
-      logo: Joi.string().uri().optional(),
+      logo: Joi.string().uri().required().messages(getImageMessage('Logo')),
       quote: Joi.string().min(5).max(255).optional(),
       heroSectionVideo: Joi.string().uri().optional(),
       whoWeAre: Joi.string().min(10).optional(),
@@ -76,24 +86,27 @@ const HomePageValidations = {
       }).optional(),
       pageImages: Joi.object({
         home: Joi.object({
-          whyChooseThumb1: Joi.string().uri().optional(),
-          whyChooseThumb2: Joi.string().uri().optional(),
-          togetherBg: Joi.string().uri().optional(),
+          whyChooseThumb1: Joi.string().uri().required().messages(getImageMessage('Why Choose Thumb1')),
+          whyChooseThumb2: Joi.string().uri().required().messages(getImageMessage('Why Choose Thumb2')),
+          togetherBg: Joi.string().uri().required().messages(getImageMessage('Together Background')),
         }).optional(),
         pageTitleBackgrounds: Joi.object({
-          about: Joi.string().uri().optional(),
-          teamMembers: Joi.string().uri().optional(),
-          event: Joi.string().uri().optional(),
-          gallery: Joi.string().uri().optional(),
-          faq: Joi.string().uri().optional(),
-          blog: Joi.string().uri().optional(),
-          contact: Joi.string().uri().optional(),
-          donate: Joi.string().uri().optional(),
-          volunteer: Joi.string().uri().optional(),
+          about: Joi.string().uri().required().messages(getImageMessage('About page background')),
+          teamMembers: Joi.string().uri().required().messages(getImageMessage('Team Members page background')),
+          event: Joi.string().uri().required().messages(getImageMessage('Event page background')),
+          gallery: Joi.string().uri().required().messages(getImageMessage('Gallery page background')),
+          faq: Joi.string().uri().required().messages(getImageMessage('FAQ page background')),
+          blog: Joi.string().uri().required().messages(getImageMessage('Blog page background')),
+          contact: Joi.string().uri().required().messages(getImageMessage('Contact page background')),
+          donate: Joi.string().uri().required().messages(getImageMessage('Donate page background')),
+          volunteer: Joi.string().uri().required().messages(getImageMessage('Volunteer page background')),
         }).optional(),
         aboutUsPage: Joi.object({
-          empowerCommunities: Joi.string().uri().optional(),
-          supportTheNextInitiative: Joi.string().uri().optional(),
+          empowerCommunities: Joi.string().uri().required().messages(getImageMessage('Empower Communities image')),
+          supportTheNextInitiative: Joi.string()
+            .uri()
+            .required()
+            .messages(getImageMessage('Support The Next Initiative image')),
         }).optional(),
       }).optional(),
     });
